@@ -1,0 +1,27 @@
+@import '/src/assets/styles/variables';
+$accent-04: rgba($accent, 0.6);
+
+.button {
+	border: none;
+	outline: none;
+	font-size: 18px;
+	border-radius: 10px;
+	padding: 10px 20px;
+	transition: background-color 0.25s ease;
+	cursor: pointer;
+	color: #000;
+	background-color: $accent-04;
+	@media (max-width: $mobile) {
+		font-size: 16px;
+		padding: 12px 18px;
+	}
+	&:hover {
+		background-color: rgba($accent, 0.9);
+	}
+	&.main {
+		background-color: rgba(255, 255, 255, 0.25);
+	}
+}
+.wrapper {
+	text-align: center;
+}

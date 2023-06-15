@@ -1,0 +1,39 @@
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+	margin: 30px;
+	font-size: 25px;
+}
+.time {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin-right: 20px;
+	> button {
+		display: block;
+		text-align: center;
+		align-items: center;
+	}
+}
+.level {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin-right: 20px;
+	> button {
+		display: block;
+		text-align: center;
+		align-items: center;
+	}
+}
+.up {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	margin-right: 20px;
+	> button {
+		display: block;
+		text-align: center;
+		align-items: center;
+	}
+}

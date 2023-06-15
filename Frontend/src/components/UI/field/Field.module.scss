@@ -1,0 +1,25 @@
+@import '/src/assets/styles/variables';
+
+.input {
+	background-color: $dark-accent;
+	border: 1px solid transparent;
+	color: $black;
+	font-size: 16px;
+	padding: 14px;
+	border-radius: 10px;
+	margin-bottom: 0.7rem;
+	outline: none;
+	width: 100%;
+
+	&:focus {
+		border-color: rgba($accent, 0.3);
+	}
+	&::placeholder {
+		color: #b18c7d;
+	}
+}
+.error {
+	color: #e96666;
+	font-size: 0.8rem;
+	margin-top: 0.2rem;
+}
