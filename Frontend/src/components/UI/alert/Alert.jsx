@@ -1,9 +1,9 @@
 import cn from 'clsx'
 import styles from './Alert.module.scss'
 
-const Alert = ({type = 'success', text}) => {
+const Alert = ({type = 'error', text}) => {
 	return (
-		<div className={cn(styles.alert, styles=[type])}>
+		<div className={cn(styles.alert, style=[type])}>
 			{text}
 		</div>
 	)
