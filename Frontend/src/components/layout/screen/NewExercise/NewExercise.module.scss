@@ -1,34 +1,21 @@
 .images {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 0.7rem;
-  margin-bottom: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 0.7rem;
+	margin-bottom: 2rem;
 
-  > img {
-    margin: 0 0.5rem;
-    cursor: pointer;
-    opacity: 0.4;
-    transition: opacity 0.4s ease;
-    position: relative;
+	> img {
+		margin: 0 0.5rem;
+		border-bottom: 2px solid transparent;
+		cursor: pointer;
+		opacity: 0.4;
+		transition: opacity 0.4s ease;
+		position: relative;
 
-    &:after {
-      content: "";
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: 0%;
-      height: 2px;
-      background-color: #fff;
-      transition: width 0.4s ease;
-    }
-
-    &.active {
-      opacity: 0.6;
-
-      &:after {
-        width: 100%;
-      }
-    }
-  }
+		&.active {
+			background-color: red;
+			opacity: 1;
+		}
+	}
 }
