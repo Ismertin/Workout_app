@@ -1,54 +1,70 @@
-import stylesLayout from "../../Layout.module.scss";
-import cn from 'clsx';
-import styles from "./NewWorkout.module.scss";
-import Header from '../../header/Header.jsx';
-import { useForm } from "react-hook-form";
-import Field from "../../../UI/field/Field.jsx";
-import { useNewWorkout } from "../../../../hooks/useNewWorkout.js";
-import Button from "../../../UI/Button/Button.jsx";
-import { useNavigate } from "react-router-dom";
+import { useMutation } from '@tanstack/react-query'
+import cn from 'clsx'
+import { Controller, useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
+
+import { ExerciseService } from '../../../../services/exercise/exercise.service.js'
+import Button from '../../../UI/Button/Button.jsx'
+import Loader from '../../../UI/Loader.jsx'
+import Alert from '../../../UI/alert/Alert.jsx'
+import Field from '../../../UI/field/Field.jsx'
+import Layout from '../../Layout.jsx'
+
+import styles from './NewWorkout.module.scss'
+import SelectExercises from './SelectExercises.jsx'
+import useNewWorkout from './useNewWorkout.js'
+
+const data = ['chest', 'shoulders', 'biceps', 'legs', 'hit', 'back']
 
 const NewWorkout = () => {
-    const navigate = useNavigate();
-    const { error, name, options, handleSubmit: workoutHandleSubmit } = useNewWorkout();
-    const { register, handleSubmit: formHandleSubmit, formState: { errors } } = useForm();
+	const {
+		control,
+		error,
+		handleSubmit,
+		isLoading,
+		register,
+		errors,
+		onSubmit,
+		isSuccess
+	} = useNewWorkout()
 
-    const onSubmit = (data) => {
-        // Обработка отправки формы
-    };
+	return (
+		<>
+			<Layout
+				bgImage="public/new-workout.jpg"
+				heading="Создание новой тренировки"
+			/>
+			<div className="wrapper_inner_page">
+				{error && <Alert text="Workout created successfully" />}
+				{isSuccess && (
+					<Alert type="success" text="Тренировка создана успешно" />
+				)}
+				{isLoading && <Loader />}
+				<form onSubmit={handleSubmit(onSubmit)}>
+					<Field
+						error={errors?.name?.message}
+						name="name"
+						register={control.register}
+						options={{ required: 'Такая тренировка уже есть' }}
+						type="text"
+						placeholder="Название"
+					/>
 
-    return (
-        <>
-            <div
-                className={cn(stylesLayout.wrapper, stylesLayout.wrapper_otherPage)}
-                style={{ backgroundImage: `url('/public/new-workout.jpg')`, height: 400 }}
-            >
-                <Header />
-                <div className={styles.heading}>Создание новой тренировки</div>
-            </div>
-            <div className="wrapper_inner_page">
-                <form onSubmit={formHandleSubmit(onSubmit)}>
-                    <Field
-                        error={errors?.message}
-                        name="Название тренировки"
-                        options={{ required: "Добавьте название" }}
-                        register={register}
-                        type="text"
-                        placeholder="Введите название тренировки"
-                    />
-                    <Field
-                        error={errors?.message}
-                        name="Описание тренировки"
-                        options={{ required: "Добавьте описание" }}
-                        register={register}
-                        type="text"
-                        placeholder="Сколько будет подходов?"
-                    />
-                    <Button clickHandler={() => navigate('/new-exercise')}>Создать тренировку</Button>
-                </form>
-            </div>
-        </>
-    );
-};
+					<Link to="/new-exercise" className="dark-link">
+						Добавить новое упражнение
+					</Link>
 
-export default NewWorkout;
+					<SelectExercises control={control} />
+
+					{errors?.iconPath && (
+						<div className="error">{errors.iconPath.message}</div>
+					)}
+
+					<Button>Создать</Button>
+				</form>
+			</div>
+		</>
+	)
+}
+
+export default NewExercise
