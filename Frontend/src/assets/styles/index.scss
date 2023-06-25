@@ -1,5 +1,5 @@
 @import './variables';
-
+@import './animations';
 * {
 	margin: 0;
 	padding: 0;
@@ -78,7 +78,7 @@ img {
 	display: block;
 	margin-bottom: 0.5rem;
 	text-decoration: none;
-	color: $dark-accent;
+	color: $accent;
 	transition: color 0.3s ease;
 
 	&:hover {

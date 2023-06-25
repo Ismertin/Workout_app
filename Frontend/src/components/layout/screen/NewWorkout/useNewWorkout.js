@@ -1,42 +1,51 @@
+import { useMutation } from '@tanstack/react-query'
 import { useMemo } from 'react'
+import { useForm } from 'react-hook-form'
 
-import WorkoutsService from '../../../../services/workouts/workout.service'
+import { workoutsService } from './../../../../services/workouts.service'
 
 export const useNewWorkout = () => {
 	const {
 		register,
-		reset,
-		control,
 		handleSubmit,
-		formState: { errors }
+		formState: { errors },
+		reset,
+		control
 	} = useForm({
 		mode: 'onChange'
 	})
 
-	const { isSuccess, error, isLoading } = useMutation(
-		['create exercise'],
-		body => WorkoutsService.create(body),
+	const { isSuccess, error, isLoading, mutate } = useMutation(
+		['create workout'],
+		body => workoutsService.create(body),
 		{
 			onSuccess: () => {
-				reset()
+				reset({
+					name: '',
+					exerciseIds: []
+				})
 			}
 		}
 	)
 
 	const onSubmit = data => {
-		mutate(data)
+		mutate({
+			name: data.name,
+			exerciseIds: data.exerciseIds.map(ex => ex.value)
+		})
 	}
+
 	return useMemo(
-		() => ({}),
-		[
+		() => ({
 			register,
-			control,
 			handleSubmit,
 			errors,
+			control,
 			isSuccess,
 			error,
 			isLoading,
 			onSubmit
-		]
+		}),
+		[errors, isSuccess, error, isLoading]
 	)
 }

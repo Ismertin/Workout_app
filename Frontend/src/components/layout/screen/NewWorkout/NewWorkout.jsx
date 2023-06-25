@@ -1,70 +1,59 @@
-import { useMutation } from '@tanstack/react-query'
-import cn from 'clsx'
-import { Controller, useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 
-import { ExerciseService } from '../../../../services/exercise/exercise.service.js'
-import Button from '../../../UI/Button/Button.jsx'
-import Loader from '../../../UI/Loader.jsx'
-import Alert from '../../../UI/alert/Alert.jsx'
-import Field from '../../../UI/field/Field.jsx'
-import Layout from '../../Layout.jsx'
-
-import styles from './NewWorkout.module.scss'
-import SelectExercises from './SelectExercises.jsx'
-import useNewWorkout from './useNewWorkout.js'
-
-const data = ['chest', 'shoulders', 'biceps', 'legs', 'hit', 'back']
+import Button from './../../../UI/Button/Button'
+import Loader from './../../../UI/Loader'
+import Alert from './../../../UI/alert/Alert'
+import Field from './../../../UI/field/Field'
+import Layout from './../../Layout'
+import SelectExercises from './SelectExercises'
+import { useNewWorkout } from './useNewWorkout'
 
 const NewWorkout = () => {
 	const {
 		control,
 		error,
+		errors,
 		handleSubmit,
 		isLoading,
-		register,
-		errors,
+		isSuccess,
 		onSubmit,
-		isSuccess
+		register
 	} = useNewWorkout()
 
 	return (
 		<>
-			<Layout
-				bgImage="public/new-workout.jpg"
-				heading="Создание новой тренировки"
-			/>
-			<div className="wrapper_inner_page">
-				{error && <Alert text="Workout created successfully" />}
-				{isSuccess && (
-					<Alert type="success" text="Тренировка создана успешно" />
-				)}
+			<Layout bgImage="/public/new-workout.jpg" heading="Create new workout" />
+			<div className="wrapper-inner-page">
+				{error && <Alert type="error" text={error} />}
+				{isSuccess && <Alert text="Workout created successfully" />}
 				{isLoading && <Loader />}
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Field
 						error={errors?.name?.message}
 						name="name"
-						register={control.register}
-						options={{ required: 'Такая тренировка уже есть' }}
+						register={register}
+						options={{
+							required: 'Name is required'
+						}}
 						type="text"
-						placeholder="Название"
+						placeholder="Enter name"
 					/>
 
 					<Link to="/new-exercise" className="dark-link">
-						Добавить новое упражнение
+						Add new exercise
 					</Link>
 
 					<SelectExercises control={control} />
 
 					{errors?.iconPath && (
-						<div className="error">{errors.iconPath.message}</div>
+						<div className="error">{errors?.iconPath?.message}</div>
 					)}
 
-					<Button>Создать</Button>
+					<Button>Create</Button>
 				</form>
 			</div>
 		</>
 	)
 }
 
-export default NewExercise
+export default NewWorkout
