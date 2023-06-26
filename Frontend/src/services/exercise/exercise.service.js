@@ -1,18 +1,24 @@
-import { $axios } from '../../api.js'
+import { $axios } from '../../api'
 
 const EXERCISES = '/exercises'
 
-export const ExerciseService = {
+class ExerciseService {
 	async getAll() {
-		return await $axios.get(EXERCISES)
-	},
+		return $axios.get(EXERCISES)
+	}
+
+	// name, times, iconPath
 	async create(body) {
-		return await $axios.post(EXERCISES, body)
-	},
+		return $axios.post(EXERCISES, body)
+	}
+
 	async update(id, body) {
-    return await $axios.put(`${EXERCISES}/${id}`, body)
-  },
+		return $axios.put(`${EXERCISES}/${id}`, body)
+	}
+
 	async delete(id) {
-    return await $axios.delete(`${id}`)
+		return $axios.delete(`${EXERCISES}/${id}`)
+	}
 }
-}
+
+export default new ExerciseService()

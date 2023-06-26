@@ -1,17 +1,15 @@
-import { HiOutlineUser } from 'react-icons/hi'
-import { IoArrowBack } from 'react-icons/io5'
+import { IoMdArrowBack } from 'react-icons/io'
+import { SlUser } from 'react-icons/sl'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useAuth } from '../../../hooks/useAuth'
+
 import Hamburger from '../hamburger/Hamburger'
 
 import styles from './Header.module.scss'
 
-const Header = ({ backLink = '' }) => {
-	/* TODO: React router useHistory */
-
+const Header = ({ backLink = '/' }) => {
 	const { pathname } = useLocation()
-
 	const navigate = useNavigate()
 
 	const { isAuth } = useAuth()
@@ -26,15 +24,15 @@ const Header = ({ backLink = '' }) => {
 								navigate('/profile')
 							}}
 						>
-							<HiOutlineUser color="#fff" fontSize={29} />
+							<SlUser fill='#fff' fontSize={25} />
 						</button>
 					) : (
 						<button
 							onClick={() => {
-								navigate('/')
+								navigate(isAuth ? backLink : '/auth')
 							}}
 						>
-							<IoArrowBack color="#fff" fontSize={29} />
+							<IoMdArrowBack fill='#fff' fontSize={29} />
 						</button>
 					)}
 					<Hamburger />

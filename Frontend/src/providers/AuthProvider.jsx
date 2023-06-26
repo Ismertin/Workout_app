@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
-import { useState } from 'react'
-import { createContext } from 'react'
+import { createContext, useState } from 'react'
+
 import { TOKEN } from '../app.constants'
 
 export const AuthContext = createContext()

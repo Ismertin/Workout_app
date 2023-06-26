@@ -12,7 +12,7 @@ export const createNewExercise = asyncHandler(async (req, res) => {
 		data: {
 			name,
 			times,
-			iconPath
+			iconPath,
 		}
 	})
 

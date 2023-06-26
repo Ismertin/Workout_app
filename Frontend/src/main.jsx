@@ -1,15 +1,10 @@
-import './assets/styles/index.scss'
-import Home from './components/layout/screen/Home/Home.jsx'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider } from 'react-router-dom'
-import Router from './routes/Routes'
-import {
-	QueryClient,
-	QueryClientProvider,
-	useQuery
-} from '@tanstack/react-query'
+
+import './assets/styles/index.scss'
 import AuthProvider from './providers/AuthProvider'
+import Router from './routes/Routes'
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -21,10 +16,10 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
-		<AuthProvider>
-			<QueryClientProvider client={queryClient}>
+		<QueryClientProvider client={queryClient}>
+			<AuthProvider>
 				<Router />
-			</QueryClientProvider>
-		</AuthProvider>
+			</AuthProvider>
+		</QueryClientProvider>
 	</React.StrictMode>
 )

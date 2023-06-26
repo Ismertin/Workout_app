@@ -1,5 +1,5 @@
 @import './variables';
-@import './animations';
+
 * {
 	margin: 0;
 	padding: 0;
@@ -78,7 +78,7 @@ img {
 	display: block;
 	margin-bottom: 0.5rem;
 	text-decoration: none;
-	color: $accent;
+	color: $dark-accent;
 	transition: color 0.3s ease;
 
 	&:hover {
@@ -102,6 +102,9 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
+input[type='number'] {
+	-moz-appearance: textfield;
+}
 
 .error {
 	color: #8d2b3d;
