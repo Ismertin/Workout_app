@@ -1,3 +1,5 @@
+import ListWorkouts from '../components/screens/Workouts/ListWorkouts.jsx'
+import SingleWorkout from '../components/screens/Workouts/SingleWorkout.jsx'
 import Auth from '../components/screens/auth/Auth'
 import Home from '../components/screens/home/Home'
 import NewExercise from '../components/screens/new-exercise/NewExercise'
@@ -29,20 +31,21 @@ export const routes = [
 		path: '/new-exercise',
 		component: NewExercise,
 		isAuth: true
-	}
-	/*
+	},
+
 	{
 		path: '/workout/:id',
 
 		component: SingleWorkout,
-		auth: true,
+		auth: true
 	},
 	{
 		path: '/workouts',
 
 		component: ListWorkouts,
-		isAuth: true,
-	},
+		isAuth: true
+	}
+	/*
 	{
 		path: '/exercise/:id',
 

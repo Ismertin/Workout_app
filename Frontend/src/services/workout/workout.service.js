@@ -2,27 +2,24 @@ import { $axios } from '../../api'
 
 const WORKOUTS = '/workouts'
 
-class WorkoutService {
-	async getAll() {
+export const WorkoutService = {
+	getAll: async () => {
 		return $axios.get(WORKOUTS)
-	}
+	},
 
-	async getById(id) {
+	getById: async id => {
 		return $axios.get(`${WORKOUTS}/${id}`)
-	}
+	},
 
-	// name, exerciseIds
-	async create(body) {
+	create: async body => {
 		return $axios.post(WORKOUTS, body)
-	}
+	},
 
-	async update(id, body) {
+	update: async (id, body) => {
 		return $axios.put(`${WORKOUTS}/${id}`, body)
-	}
+	},
 
-	async delete(id) {
+	delete: async id => {
 		return $axios.delete(`${WORKOUTS}/${id}`)
 	}
 }
-
-export default new WorkoutService()
