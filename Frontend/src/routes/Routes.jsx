@@ -1,14 +1,14 @@
-import NotFound from '../components/layout/screen/not-found/NotFound.jsx'
-import { routes } from './routes.data.js'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import React from 'react'
-import { useAuth } from '../hooks/useAuth.js'
-import { createContext } from 'react'
 
-export const AuthContext = createContext()
+import { useAuth } from '../hooks/useAuth'
+
+import NotFound from '../components/screens/not-found/NotFound'
+
+import { routes } from './routes.data'
 
 const Router = () => {
 	const { isAuth } = useAuth()
+
 	return (
 		<BrowserRouter>
 			<Routes>
@@ -16,6 +16,7 @@ const Router = () => {
 					if (route.isAuth && !isAuth) {
 						return false
 					}
+
 					return (
 						<Route
 							key={route.path}
@@ -24,7 +25,7 @@ const Router = () => {
 						/>
 					)
 				})}
-				<Route path="*" element={<NotFound />} />
+				<Route path='*' element={<NotFound />} />
 			</Routes>
 		</BrowserRouter>
 	)
