@@ -1,10 +1,10 @@
-import ListWorkouts from '../components/screens/Workouts/ListWorkouts.jsx'
-import SingleWorkout from '../components/screens/Workouts/SingleWorkout.jsx'
 import Auth from '../components/screens/auth/Auth'
 import Home from '../components/screens/home/Home'
 import NewExercise from '../components/screens/new-exercise/NewExercise'
 import NewWorkout from '../components/screens/new-workout/NewWorkout'
 import Profile from '../components/screens/profile/Profile'
+import Workout from '../components/screens/Workouts/Workout.jsx'
+import ListWorkouts from '../components/screens/Workouts/ListWorkouts.jsx'
 
 export const routes = [
 	{
@@ -36,7 +36,7 @@ export const routes = [
 	{
 		path: '/workout/:id',
 
-		component: SingleWorkout,
+		component: Workout,
 		auth: true
 	},
 	{

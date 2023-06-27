@@ -4,13 +4,14 @@ import { useParams } from 'react-router-dom'
 
 import { WorkoutService } from '../../../services/workout/workout.service.js'
 import stylesLayout from '../../layout/Layout.module.scss'
+import styles from './Workout.module.scss'
 import Header from '../../layout/header/Header.jsx'
 
-const Workouts = () => {
+const Workout = () => {
 	const { id } = useParams()
 
 	const {
-		data: workout,
+		data: workoutLog,
 		isSuccess,
 		isLoading
 	} = useQuery(['get workout', id], () => WorkoutService.getById(id), {
@@ -21,14 +22,24 @@ const Workouts = () => {
 		<>
 			<div
 				className={cn(stylesLayout.wrapper, stylesLayout.otherPage)}
-				style={{ backgroundImage: `url(${bgImage}})`, height: 356 }}
+				style={{ backgroundImage: `url('/images/workout-bg.jpg')`, height: 356 }}
 			>
-				<Header backLink="/workouts" />
+				<Header backLink='/workouts' />
 
-				{isSuccess && <time className={styles.time}>{data.minutes}</time>}
+				{isSuccess && (
+					<div>
+						<time className={styles.time}>{workoutLog.minutes + 'min.'}</time>
+						<h1 className={stylesLayout.heading}>{workoutLog.workout.name}</h1>
+					</div>
+				)}
+			</div>
+			<div className='wrapper-inner-page' style={{ paddingLeft: 0, paddingRight: 0 }}>
+				<div style={{ width: '90%', margin: '0, auto' }}>
+					{/*{errorCompleted && <Alert type='error' text={errorCompleted} />}*/}
+				</div>
 			</div>
 		</>
 	)
 }
 
-export default Workouts
+export default Workout
