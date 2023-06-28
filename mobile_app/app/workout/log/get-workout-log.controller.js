@@ -2,6 +2,7 @@ import asyncHandler from 'express-async-handler'
 
 import { addPrevValue } from '../../exercise/log/add-prev-values.utils.js'
 import { prisma } from '../../prisma.js'
+import { calculateMinute } from './calculate-minute.js'
 
 //@desc Get workout log
 //@route GET /api/workouts/log/:id
@@ -34,6 +35,6 @@ export const getWorkoutLog = asyncHandler(async (req, res) => {
 
 	res.json({
 		...workoutLog,
-		minutes: calculateMinutes(workoutLog.workout.exercises.length)
+		minutes: calculateMinute(workoutLog.workout.exercises.length)
 	})
 })

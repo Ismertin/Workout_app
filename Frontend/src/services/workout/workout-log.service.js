@@ -4,7 +4,7 @@ import { WORKOUTS } from './workout.service.js'
 
 const LOG = `${WORKOUTS}/log`
 
-export const WorkoutsLogService = {
+const WorkoutsLogService = {
 	getById: async id => {
 		return $axios.get(`${LOG}/${id}`)
 	},
@@ -17,5 +17,4 @@ export const WorkoutsLogService = {
 		return $axios.patch(`${LOG}/complete/${id}`)
 	}
 }
-
 export default WorkoutsLogService
