@@ -10,7 +10,7 @@ const WorkoutsLogService = {
 	},
 
 	create: async workoutId => {
-		return $axios.post(`${LOF}/${workoutId}`)
+		return $axios.post(`${LOG}/${workoutId}`)
 	},
 
 	complete: async id => {

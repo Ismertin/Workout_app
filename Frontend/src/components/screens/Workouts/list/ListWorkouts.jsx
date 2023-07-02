@@ -12,25 +12,23 @@ const ListWorkouts = () => {
 
 	return (
 		<>
-			<Layout bgImage="/images/workout-bg.jpg" heading="Workouts list" />
-
+			<Layout bgImage='/images/workout-bg.jpg' heading='Workouts list' />
 			<div
-				className="wrapper-inner-page"
+				className='wrapper-inner-page'
 				style={{ paddingLeft: '0', paddingRight: '0' }}
 			>
-				{error && <Alert type="error" text={error} />}
-				{isSuccessMutate && <Alert text="Workout log created successfully" />}
+				{error && <Alert type='error' text={error} />}
+				{isSuccessMutate && <Alert text='Workout log created successfully' />}
 				{isLoading && <Loader />}
 				{isSuccess && (
 					<div className={styles.wrapper}>
 						{data.map(workout => (
-							<WorkoutItem key={workout.id} workout={workout} mutate={mutate} />
+							<WorkoutItem key={workout.id}  workout={workout} mutate={mutate} />
 						))}
-						console.log(data)
 					</div>
 				)}
 				{isSuccess && data?.length === 0 && (
-					<Alert type="warning" text="No workouts found" />
+					<Alert type='warning' text='No workouts found' />
 				)}
 			</div>
 		</>
